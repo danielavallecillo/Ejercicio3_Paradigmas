@@ -48,9 +48,51 @@ namespace Ejercicio3_Paradigmas
             using (var con = new Microsoft.Data.SqlClient.SqlConnection(cadena))
             {
                 con.Open();
-                con.Execute(sql,prod);
+                con.Execute(sql, prod);
                 this.dataGridView1.DataSource = con.Query<P.M_PRODUCTO>(sql2).ToList();
                 con.Close();
+            }
+
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int r = this.dataGridView1.CurrentRow.Index;
+            P.M_PRODUCTO p = new P.M_PRODUCTO();
+            p.id = Convert.ToInt32(this.dataGridView1.Rows[r].Cells[0].Value.ToString());
+
+            string cadena = "workstation id=empresa2.mssql.somee.com;packet size=4096;user id=danielavf_SQLLogin_1;pwd=DaniEmpresa2026;data source=empresa2.mssql.somee.com;persist security info=False;initial catalog=empresa2;TrustServerCertificate=True";
+            string sql_b = @"
+                           delete from PRODUCTOS
+                           where id=@id";
+
+            string sql = "select * from PRODUCTOS";
+            using (var con = new Microsoft.Data.SqlClient.SqlConnection(cadena))
+            {
+                con.Execute(sql_b, p);
+                this.dataGridView1.DataSource = con.Query<P.M_PRODUCTO>(sql).ToList();
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int r = this.dataGridView1.CurrentRow.Index;
+            P.M_PRODUCTO p = new P.M_PRODUCTO();
+            p.id = Convert.ToInt32(this.dataGridView1.Rows[r].Cells[0].Value.ToString());
+            p.producto = this.textBox1.Text;
+            p.precio = Convert.ToDouble(this.numericUpDown1.Value.ToString());
+
+            string cadena = "workstation id=empresa2.mssql.somee.com;packet size=4096;user id=danielavf_SQLLogin_1;pwd=DaniEmpresa2026;data source=empresa2.mssql.somee.com;persist security info=False;initial catalog=empresa2;TrustServerCertificate=True";
+            string sql_b = @"
+                           update PRODUCTOS set PRODUCTO=@PRODUCTO, PRECIO=@PRECIO  
+                           where id=@id";
+
+            string sql = "select * from PRODUCTOS";
+            using (var con = new Microsoft.Data.SqlClient.SqlConnection(cadena))
+            {
+                con.Execute(sql_b, p);
+                this.dataGridView1.DataSource = con.Query<P.M_PRODUCTO>(sql).ToList();
             }
 
 

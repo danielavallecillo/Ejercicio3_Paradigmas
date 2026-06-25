@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             button1 = new Button();
             dataGridView1 = new DataGridView();
             ID = new DataGridViewTextBoxColumn();
@@ -36,10 +37,13 @@
             PRECIO = new DataGridViewTextBoxColumn();
             CANTIDAD = new DataGridViewTextBoxColumn();
             COSTO = new DataGridViewTextBoxColumn();
+            contextMenuStrip1 = new ContextMenuStrip(components);
             splitContainer1 = new SplitContainer();
+            button2 = new Button();
+            numericUpDown1 = new NumericUpDown();
             textBox1 = new TextBox();
             buttonAgregar = new Button();
-            numericUpDown1 = new NumericUpDown();
+            button3 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -50,7 +54,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(27, 33);
+            button1.Location = new Point(27, 21);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 0;
@@ -62,6 +66,7 @@
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { ID, PRODUCTO, ID_CATEGORIA, PRECIO, CANTIDAD, COSTO });
+            dataGridView1.ContextMenuStrip = contextMenuStrip1;
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(0, 0);
             dataGridView1.Name = "dataGridView1";
@@ -118,6 +123,12 @@
             COSTO.Name = "COSTO";
             COSTO.Width = 125;
             // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(61, 4);
+            // 
             // splitContainer1
             // 
             splitContainer1.Dock = DockStyle.Fill;
@@ -127,6 +138,8 @@
             // 
             // splitContainer1.Panel1
             // 
+            splitContainer1.Panel1.Controls.Add(button3);
+            splitContainer1.Panel1.Controls.Add(button2);
             splitContainer1.Panel1.Controls.Add(numericUpDown1);
             splitContainer1.Panel1.Controls.Add(textBox1);
             splitContainer1.Panel1.Controls.Add(buttonAgregar);
@@ -141,16 +154,33 @@
             splitContainer1.TabIndex = 2;
             splitContainer1.SplitterMoved += splitContainer1_SplitterMoved;
             // 
+            // button2
+            // 
+            button2.Location = new Point(27, 56);
+            button2.Name = "button2";
+            button2.Size = new Size(94, 29);
+            button2.TabIndex = 4;
+            button2.Text = "Eliminar";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // numericUpDown1
+            // 
+            numericUpDown1.Location = new Point(622, 24);
+            numericUpDown1.Name = "numericUpDown1";
+            numericUpDown1.Size = new Size(150, 27);
+            numericUpDown1.TabIndex = 3;
+            // 
             // textBox1
             // 
-            textBox1.Location = new Point(348, 35);
+            textBox1.Location = new Point(348, 23);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(222, 27);
             textBox1.TabIndex = 2;
             // 
             // buttonAgregar
             // 
-            buttonAgregar.Location = new Point(187, 33);
+            buttonAgregar.Location = new Point(187, 21);
             buttonAgregar.Name = "buttonAgregar";
             buttonAgregar.Size = new Size(94, 29);
             buttonAgregar.TabIndex = 1;
@@ -158,12 +188,15 @@
             buttonAgregar.UseVisualStyleBackColor = true;
             buttonAgregar.Click += buttonAgregar_Click;
             // 
-            // numericUpDown1
+            // button3
             // 
-            numericUpDown1.Location = new Point(623, 36);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(150, 27);
-            numericUpDown1.TabIndex = 3;
+            button3.Location = new Point(187, 56);
+            button3.Name = "button3";
+            button3.Size = new Size(94, 29);
+            button3.TabIndex = 5;
+            button3.Text = "Modificar";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // Form1
             // 
@@ -197,5 +230,8 @@
         private Button buttonAgregar;
         private TextBox textBox1;
         private NumericUpDown numericUpDown1;
+        private Button button2;
+        private ContextMenuStrip contextMenuStrip1;
+        private Button button3;
     }
 }

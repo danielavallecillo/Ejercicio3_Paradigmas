@@ -29,38 +29,40 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            button1 = new Button();
+            buttonCargar = new Button();
             dataGridView1 = new DataGridView();
             ID = new DataGridViewTextBoxColumn();
             PRODUCTO = new DataGridViewTextBoxColumn();
-            ID_CATEGORIA = new DataGridViewTextBoxColumn();
+            ID_CATEGORIA = new DataGridViewComboBoxColumn();
             PRECIO = new DataGridViewTextBoxColumn();
             CANTIDAD = new DataGridViewTextBoxColumn();
             COSTO = new DataGridViewTextBoxColumn();
-            contextMenuStrip1 = new ContextMenuStrip(components);
             splitContainer1 = new SplitContainer();
-            button2 = new Button();
+            buttonModificar = new Button();
+            buttonEliminar = new Button();
             numericUpDown1 = new NumericUpDown();
             textBox1 = new TextBox();
             buttonAgregar = new Button();
-            button3 = new Button();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            modificarToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            contextMenuStrip1.SuspendLayout();
             SuspendLayout();
             // 
-            // button1
+            // buttonCargar
             // 
-            button1.Location = new Point(27, 21);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 0;
-            button1.Text = "Cargar";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            buttonCargar.Location = new Point(27, 21);
+            buttonCargar.Name = "buttonCargar";
+            buttonCargar.Size = new Size(94, 29);
+            buttonCargar.TabIndex = 0;
+            buttonCargar.Text = "Cargar";
+            buttonCargar.UseVisualStyleBackColor = true;
+            buttonCargar.Click += button1_Click;
             // 
             // dataGridView1
             // 
@@ -97,6 +99,8 @@
             ID_CATEGORIA.HeaderText = "CATEGORIA";
             ID_CATEGORIA.MinimumWidth = 6;
             ID_CATEGORIA.Name = "ID_CATEGORIA";
+            ID_CATEGORIA.Resizable = DataGridViewTriState.True;
+            ID_CATEGORIA.SortMode = DataGridViewColumnSortMode.Automatic;
             ID_CATEGORIA.Width = 125;
             // 
             // PRECIO
@@ -123,12 +127,6 @@
             COSTO.Name = "COSTO";
             COSTO.Width = 125;
             // 
-            // contextMenuStrip1
-            // 
-            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
-            contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(61, 4);
-            // 
             // splitContainer1
             // 
             splitContainer1.Dock = DockStyle.Fill;
@@ -138,12 +136,12 @@
             // 
             // splitContainer1.Panel1
             // 
-            splitContainer1.Panel1.Controls.Add(button3);
-            splitContainer1.Panel1.Controls.Add(button2);
+            splitContainer1.Panel1.Controls.Add(buttonModificar);
+            splitContainer1.Panel1.Controls.Add(buttonEliminar);
             splitContainer1.Panel1.Controls.Add(numericUpDown1);
             splitContainer1.Panel1.Controls.Add(textBox1);
             splitContainer1.Panel1.Controls.Add(buttonAgregar);
-            splitContainer1.Panel1.Controls.Add(button1);
+            splitContainer1.Panel1.Controls.Add(buttonCargar);
             splitContainer1.Panel1.RightToLeft = RightToLeft.Yes;
             // 
             // splitContainer1.Panel2
@@ -154,15 +152,25 @@
             splitContainer1.TabIndex = 2;
             splitContainer1.SplitterMoved += splitContainer1_SplitterMoved;
             // 
-            // button2
+            // buttonModificar
             // 
-            button2.Location = new Point(27, 56);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 29);
-            button2.TabIndex = 4;
-            button2.Text = "Eliminar";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            buttonModificar.Location = new Point(187, 56);
+            buttonModificar.Name = "buttonModificar";
+            buttonModificar.Size = new Size(94, 29);
+            buttonModificar.TabIndex = 5;
+            buttonModificar.Text = "Modificar";
+            buttonModificar.UseVisualStyleBackColor = true;
+            buttonModificar.Click += button3_Click;
+            // 
+            // buttonEliminar
+            // 
+            buttonEliminar.Location = new Point(27, 56);
+            buttonEliminar.Name = "buttonEliminar";
+            buttonEliminar.Size = new Size(94, 29);
+            buttonEliminar.TabIndex = 4;
+            buttonEliminar.Text = "Eliminar";
+            buttonEliminar.UseVisualStyleBackColor = true;
+            buttonEliminar.Click += button2_Click;
             // 
             // numericUpDown1
             // 
@@ -188,15 +196,19 @@
             buttonAgregar.UseVisualStyleBackColor = true;
             buttonAgregar.Click += buttonAgregar_Click;
             // 
-            // button3
+            // contextMenuStrip1
             // 
-            button3.Location = new Point(187, 56);
-            button3.Name = "button3";
-            button3.Size = new Size(94, 29);
-            button3.TabIndex = 5;
-            button3.Text = "Modificar";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { modificarToolStripMenuItem });
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(211, 56);
+            // 
+            // modificarToolStripMenuItem
+            // 
+            modificarToolStripMenuItem.Name = "modificarToolStripMenuItem";
+            modificarToolStripMenuItem.Size = new Size(210, 24);
+            modificarToolStripMenuItem.Text = "Modificar";
+            modificarToolStripMenuItem.Click += modificarToolStripMenuItem_Click;
             // 
             // Form1
             // 
@@ -213,25 +225,27 @@
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Button button1;
+        private Button buttonCargar;
         private DataGridView dataGridView1;
         private SplitContainer splitContainer1;
-        private DataGridViewTextBoxColumn ID;
-        private DataGridViewTextBoxColumn PRODUCTO;
-        private DataGridViewTextBoxColumn ID_CATEGORIA;
-        private DataGridViewTextBoxColumn PRECIO;
-        private DataGridViewTextBoxColumn CANTIDAD;
-        private DataGridViewTextBoxColumn COSTO;
         private Button buttonAgregar;
         private TextBox textBox1;
         private NumericUpDown numericUpDown1;
-        private Button button2;
+        private Button buttonEliminar;
+        private Button buttonModificar;
+        private DataGridViewTextBoxColumn ID;
+        private DataGridViewTextBoxColumn PRODUCTO;
+        private DataGridViewComboBoxColumn ID_CATEGORIA;
+        private DataGridViewTextBoxColumn PRECIO;
+        private DataGridViewTextBoxColumn CANTIDAD;
+        private DataGridViewTextBoxColumn COSTO;
         private ContextMenuStrip contextMenuStrip1;
-        private Button button3;
+        private ToolStripMenuItem modificarToolStripMenuItem;
     }
 }

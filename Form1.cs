@@ -19,6 +19,7 @@ namespace Ejercicio3_Paradigmas
 
         }
 
+        //BOTON CARGAR
         private void button1_Click(object sender, EventArgs e)
         {
             string cadena = "workstation id=empresa2.mssql.somee.com;packet size=4096;user id=danielavf_SQLLogin_1;pwd=DaniEmpresa2026;data source=empresa2.mssql.somee.com;persist security info=False;initial catalog=empresa2;TrustServerCertificate=True";
@@ -32,6 +33,7 @@ namespace Ejercicio3_Paradigmas
 
         }
 
+        //BOTON AGREGAR
         private void buttonAgregar_Click(object sender, EventArgs e)
         {
             P.M_PRODUCTO prod = new P.M_PRODUCTO();
@@ -56,6 +58,7 @@ namespace Ejercicio3_Paradigmas
 
         }
 
+        //BOTON ELIMINAR
         private void button2_Click(object sender, EventArgs e)
         {
             int r = this.dataGridView1.CurrentRow.Index;
@@ -75,6 +78,7 @@ namespace Ejercicio3_Paradigmas
             }
         }
 
+        //BOTON MODIFICAR
         private void button3_Click(object sender, EventArgs e)
         {
             int r = this.dataGridView1.CurrentRow.Index;
@@ -96,6 +100,13 @@ namespace Ejercicio3_Paradigmas
             }
 
 
+        }
+
+        private void modificarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int r = this.dataGridView1.CurrentRow.Index;
+            this.textBox1.Text = this.dataGridView1.Rows[r].Cells[1].Value.ToString();
+            numericUpDown1.Value = Convert.ToDecimal(this.dataGridView1.Rows[r].Cells[3].Value.ToString());
         }
     }
 }

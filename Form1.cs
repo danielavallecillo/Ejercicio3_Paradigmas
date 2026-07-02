@@ -102,6 +102,7 @@ namespace Ejercicio3_Paradigmas
 
         }
 
+        //Context del Modificar
         private void modificarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int r = this.dataGridView1.CurrentRow.Index;

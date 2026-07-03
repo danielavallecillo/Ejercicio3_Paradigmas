@@ -1,4 +1,5 @@
 using Dapper;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Ejercicio3_Paradigmas
 {
@@ -24,9 +25,13 @@ namespace Ejercicio3_Paradigmas
         {
             string cadena = "workstation id=empresa2.mssql.somee.com;packet size=4096;user id=danielavf_SQLLogin_1;pwd=DaniEmpresa2026;data source=empresa2.mssql.somee.com;persist security info=False;initial catalog=empresa2;TrustServerCertificate=True";
             string sql = "select * from PRODUCTOS";
+            string sql_c = "select * from CATEGORIAS";
 
             using (var con = new Microsoft.Data.SqlClient.SqlConnection(cadena))
             {
+                ((DataGridViewComboBoxColumn)this.dataGridView1.Columns[2]).DataSource = con.Query<P.M_CATEGORIA>(sql_c).ToList();
+                ((DataGridViewComboBoxColumn)this.dataGridView1.Columns[2]).ValueMember = "id";
+                ((DataGridViewComboBoxColumn)this.dataGridView1.Columns[2]).DisplayMember = "categoria";
                 this.dataGridView1.DataSource = con.Query<P.M_PRODUCTO>(sql).ToList();
 
             }
@@ -45,13 +50,18 @@ namespace Ejercicio3_Paradigmas
                 PRODUCTOS(PRODUCTO, ID_CATEGORIA, PRECIO, CANTIDAD, COSTO)
                 VALUES(@PRODUCTO,1, 25, @CANTIDAD, 20)";
             string sql2 = "select * from PRODUCTOS";
+            string sql_c = "select * from CATEGORIAS";
 
 
             using (var con = new Microsoft.Data.SqlClient.SqlConnection(cadena))
             {
                 con.Open();
                 con.Execute(sql, prod);
+                ((DataGridViewComboBoxColumn)this.dataGridView1.Columns[2]).DataSource = con.Query<P.M_CATEGORIA>(sql_c).ToList();
+                ((DataGridViewComboBoxColumn)this.dataGridView1.Columns[2]).ValueMember = "id";
+                ((DataGridViewComboBoxColumn)this.dataGridView1.Columns[2]).DisplayMember = "categoria";
                 this.dataGridView1.DataSource = con.Query<P.M_PRODUCTO>(sql2).ToList();
+
                 con.Close();
             }
 
